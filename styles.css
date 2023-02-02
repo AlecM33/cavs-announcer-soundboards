@@ -123,8 +123,8 @@ label {
     visibility: visible;
     position: absolute;
     font-size: 20px;
-    bottom: 39%;
-    left: 34%;
+    bottom: 45%;
+    left: 46%;
 }
 
 #announcer-select {
@@ -236,8 +236,8 @@ a {
     }
 
     .loading::after {
-        left: 26%;
-        bottom: 38%;
+        left: 44%;
+        bottom: 44%;
     }
 
     .sound img {
