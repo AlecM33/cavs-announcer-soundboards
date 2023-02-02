@@ -19,7 +19,7 @@ const toggleLoading = (sound, isLoading) => {
         sound.querySelector('img').classList.add('invisible');
         sound.classList.add('loading');
     } else {
-        //sound.classList.remove('loading');
+        sound.classList.remove('loading');
         sound.querySelector('label').classList.remove('invisible');
         sound.querySelector('img').classList.remove('invisible');
     }
