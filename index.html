@@ -1,0 +1,310 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Cavs Announcer Soundboard</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+<style>
+    .sound-list {
+        display: flex;
+        /* justify-content: space-evenly; */
+        flex-wrap: wrap;
+        align-items: center;
+        justify-content: flex-start;
+        /* flex-direction: column; */
+        margin-top: 30px;
+        width: 100%;
+    }
+    body {
+        background-color: #72253d;
+        font-family: 'helvetica', sans-serif;
+        text-align: center;
+        display: flex;
+        flex-direction: column;
+        margin: 0;
+        align-items: center;
+    }
+
+    button {
+        background-color: #b4975a;
+        border: none;
+        width: 9em;
+        border-radius: 5px;
+        padding: 15px;
+        font-size: 25px;
+        box-shadow:  0 3px 6px rgb(0 0 0 / 40%);
+        justify-content: center;
+        margin: 50px 0 0 0;
+    }
+
+    h1 {
+        color: #B4975A;
+        font-size: 50px;
+        text-shadow: 0 3px 4px rgb(0 0 0 / 55%);
+        font-style: italic;
+        font-weight: 500;
+    }
+
+    label {
+        display: block;
+    }
+
+    .announcer-option {
+        padding: 20px;
+        border-radius: 5px;
+        margin: 5px;
+        background-color: #5e1f32;
+        box-shadow: 0 3px 6px rgb(0 0 0 / 40%);
+        border: 2px solid #b4975a;
+        user-select: none;
+        -ms-user-select: none;
+        -webkit-user-select: none;
+    }
+
+    .announcer-option:hover, .sound:hover, button:hover {
+        transform: scale(1.05);
+        transition: ease-out 0.2s;
+        cursor: pointer;
+        filter: brightness(1.2);
+    }
+
+    .sound label:hover {
+        cursor: pointer;
+    }
+
+    .announcer-name {
+        color: #d7d7d7;
+        font-weight: bold;
+        font-size: 30px;
+    }
+
+    .announcer-image img {
+        border-radius: 50%;
+        width: 200px;
+        user-select: none;
+        -ms-user-select: none;
+        -webkit-user-select: none;
+    }
+
+    #announcer-select {
+        margin-top: 50px;
+        width: 100%;
+        justify-content: space-evenly;
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+        margin-bottom: 3em;
+    }
+
+    #header {
+        display: flex;
+        align-items: center;
+    }
+
+    #header img {
+        width: 100px;
+    }
+
+    .sound img {
+        width: 50px;
+        position: absolute;
+        bottom: 0;
+        left: 39%;
+        user-select: none;
+        -ms-user-select: none;
+        -webkit-user-select: none;
+    }
+
+    .sound {
+        position: relative;
+        width: 200px;
+        height: 85px;
+        font-size: 20px;
+        color: #d7d7d7;
+        background-color: #5e1f32;
+        padding: 10px;
+        border-radius: 5px;
+        border: 3px solid #b4975a;
+        box-shadow: 0 3px 6px rgb(0 0 0 / 40%);
+        margin: 10px;
+    }
+
+    @keyframes fade-and-slide {
+        0% {
+            opacity: 0;
+            transform: translateY(20px);
+        }
+        100% {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+
+    @media(max-width: 500px) {
+        h1 {
+            font-size: 35px;
+        }
+
+        #header img {
+            width: 75px;
+        }
+
+        .announcer-name {
+            font-size: 20px;
+        }
+
+        .announcer-option {
+            width: 200px;
+        }
+
+        .announcer-option img {
+            width: 130px;
+        }
+    }
+</style>
+<body>
+    <h1>Cavs Announcer Soundboard</h1>
+    <div id="header">
+        <img alt='cavs-logo' id="logo" src="./images/cavs_logo.svg"/>
+        <img src="./images/volume.svg"/>
+    </div>
+    <div id="announcer-select">
+        <div class="announcer-option">
+            <div class="announcer-image">
+                <img alt="Austin Carr" src="./images/austin_carr.jpeg"/>
+            </div>
+            <div class="announcer-name">Austin Carr</div>
+        </div>
+        <div class="announcer-option">
+            <div class="announcer-image">
+                <img alt="Austin Carr" src="./images/fred_mcleod.png"/>
+            </div>
+            <div class="announcer-name">Fred McLeod</div>
+        </div>
+        <div class="announcer-option">
+            <div class="announcer-image">
+                <img alt="Austin Carr" src="./images/john_michael.jpg"/>
+            </div>
+            <div class="announcer-name">John Michael</div>
+        </div>
+    </div>
+    <button id="back" style="display:none;">Go Back</button>
+    <div id="sounds">
+        <div class="sound-list" id="sounds-1" style="display: none;">
+            <div class="sound">
+                <label for="austin-carr-1">Get that weak stuff outta here!</label>
+                <audio id="austin-carr-1">
+                    <source src="./sounds/get_that_weak_stuff_outta_here.wav" type="audio/wav">
+                </audio>
+                <img src="./images/volume.svg" alt="sound"/>
+            </div>
+        </div>
+        <div class="sound-list" id="sounds-2" style="display: none;">
+            <div class="sound">
+                <label for="fred-mcleod-1">Goodnight Oakland!</label>
+                <audio id="fred-mcleod-1">
+                    <source src="./sounds/its_over.wav" type="audio/wav">
+                </audio>
+                <img src="./images/volume.svg" alt="sound"/>
+            </div>
+            <div class="sound">
+                <label for="fred-mcleod-2">Jusif Nurkic - Screensaver</label>
+                <audio id="fred-mcleod-2">
+                    <source src="./sounds/nurkic_screensaver.wav" type="audio/wav">
+                </audio>
+                <img src="./images/volume.svg" alt="sound"/>
+            </div>
+            <div class="sound">
+                <label for="fred-mcleod-3">The Bottom!</label>
+                <audio id="fred-mcleod-3">
+                    <source src="./sounds/the_bottom.wav" type="audio/wav">
+                </audio>
+                <img src="./images/volume.svg" alt="sound"/>
+            </div>
+            <div class="sound">
+                <label for="fred-mcleod-4">Unbelievable</label>
+                <audio id="fred-mcleod-4">
+                    <source src="./sounds/unbelievable.wav" type="audio/wav">
+                </audio>
+                <img src="./images/volume.svg" alt="sound"/>
+            </div>
+            <div class="sound">
+                <label for="fred-mcleod-5">Convenient Banking Hours</label>
+                <audio id="fred-mcleod-5">
+                    <source src="./sounds/convenient_banking_hours.wav" type="audio/wav">
+                </audio>
+                <img src="./images/volume.svg" alt="sound"/>
+            </div>
+            <div class="sound">
+                <label for="fred-mcleod-6">Take That Chicago</label>
+                <audio id="fred-mcleod-6">
+                    <source src="./sounds/take_that_chicago.wav" type="audio/wav">
+                </audio>
+                <img src="./images/volume.svg" alt="sound"/>
+            </div>
+        </div>
+        <div class="sound-list" id="sounds-3" style="display: none;">
+            <div class="sound">
+                <label for="jon-michael-1">Mitchell...for three...</label>
+                <audio id="jon-michael-1">
+                    <source src="./sounds/mitchell_for_three.wav" type="audio/wav">
+                </audio>
+                <img src="./images/volume.svg" alt="sound"/>
+            </div>
+            <div class="sound">
+                <label for="jon-michael-2">HEEEEEE knocks it down!</label>
+                <audio id="jon-michael-2">
+                    <source src="./sounds/he_knocks_it_down.wav" type="audio/wav">
+                </audio>
+                <img src="./images/volume.svg" alt="sound"/>
+            </div>
+        </div>
+    </div>
+    <script>
+        document.getElementById('back').onclick = () => {
+            document.querySelectorAll('.sound-list').forEach((soundList) => {
+                soundList.style.display = 'none';
+            });
+            document.getElementById('announcer-select').style.display = 'flex';
+            document.getElementById('announcer-select').animate(
+                [
+                    { opacity: 0 },
+                    { opacity: 1 }
+                ], {
+                    fill: 'forwards',
+                    easing: 'linear',
+                    duration: 200
+                });
+            document.getElementById('back').style.display = 'none';
+        }
+        document.querySelectorAll('.sound').forEach((sound) => sound.onclick = () => {
+            document.querySelectorAll('.sound').forEach((sound) => {
+                sound.querySelector('audio').pause();
+                sound.querySelector('audio').currentTime = 0;
+            })
+            sound.querySelector('audio').play()
+        });
+        document.querySelectorAll('.announcer-option').forEach((option, index) => option.onclick = () => {
+                document.getElementById('back').style.display = 'flex';
+                document.getElementById('announcer-select').style.display = 'none';
+                document.getElementById('sounds-' + (index + 1)).style.display = 'flex';
+                document.getElementById('sounds-' + (index + 1)).animate(
+                    [
+                        { opacity: 0 },
+                        { opacity: 1 }
+                    ], {
+                        fill: 'forwards',
+                        easing: 'linear',
+                        duration: 200
+                    });
+                document.querySelectorAll('.announcer-option').forEach((option2, index2) => {
+                    if (index2 !== index) {
+                        document.getElementById('sounds-' + (index2 + 1)).style.display = 'none';
+                    }
+                })
+        });
+    </script>
+</body>
+
+</html>
