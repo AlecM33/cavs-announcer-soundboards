@@ -122,10 +122,12 @@
     #header {
         display: flex;
         align-items: center;
+        flex-direction: column;
     }
 
     #header img {
         width: 100px;
+        filter: drop-shadow(0 3px 4px rgb(0 0 0 / 55%));
     }
 
     .sound img {
@@ -165,11 +167,11 @@
 
     @media(max-width: 500px) {
         h1 {
-            font-size: 35px;
+            font-size: 25px;
         }
 
         #header img {
-            width: 75px;
+            width: 50px;
         }
 
         .announcer-name {
@@ -183,13 +185,34 @@
         .announcer-option img {
             width: 130px;
         }
+
+        .sound {
+            width: 130px;
+            font-size: 16px;
+            margin: 5px;
+        }
+
+        .loading::after {
+            left: 26%;
+            bottom: 38%;
+        }
+
+        .sound img {
+            left: 34%;
+        }
+
+        button {
+            font-size: 20px;
+        }
     }
 </style>
 <body>
-    <h1>Cavs Announcer Soundboard</h1>
     <div id="header">
-        <img alt='cavs-logo' id="logo" src="./images/cavs_logo.svg"/>
-        <img src="./images/volume.svg" alt="sound"/>
+        <h1>Cavs Announcer Soundboard</h1>
+        <div>
+            <img alt='cavs-logo' id="logo" src="./images/cavs_logo.svg"/>
+            <img src="./images/volume.svg" alt="sound"/>
+        </div>
     </div>
     <div id="announcer-select">
         <div class="announcer-option">
