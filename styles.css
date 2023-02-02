@@ -111,7 +111,7 @@ label {
 }
 
 .loading {
-    filter: opacity(0.5);
+    filter: opacity(0.5) brightness(1) !important;
 }
 
 .invisible {

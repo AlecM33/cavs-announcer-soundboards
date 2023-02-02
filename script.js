@@ -1,28 +1,43 @@
-const audioHandler = (audio) => {
-    audio.closest('div').classList.remove('loading');
-    audio.closest('div').querySelector('label').classList.remove('invisible');
-    audio.closest('div').querySelector('img').classList.remove('invisible');
-    audio.closest('.sound').classList.add('active-sound');
-    audio.closest('.sound').onclick = async (e) => {
-        document.querySelectorAll('.sound').forEach((sound) => {
-            sound.querySelector('audio').pause();
-            sound.querySelector('audio').currentTime = 0;
-        })
-        try {
-            await e.currentTarget.querySelector('audio').play();
-        } catch (e) {
-            console.error(e);
+const pauseAllOtherSounds = () => {
+    document.querySelectorAll('.sound').forEach((sound) => {
+        const audioEl = sound.querySelector('audio');
+        if (audioEl.currentTime > 0 && !audioEl.paused && !audioEl.ended && audioEl.readyState > audioEl.HAVE_CURRENT_DATA) {
+            audioEl.pause();
+            audioEl.currentTime = 0;
         }
+    })
+}
+
+const play = async (audioEl) => {
+    pauseAllOtherSounds();
+    await audioEl.play();
+}
+
+const toggleLoading = (sound, isLoading) => {
+    if (isLoading) {
+        sound.querySelector('label').classList.add('invisible');
+        sound.querySelector('img').classList.add('invisible');
+        sound.classList.add('loading');
+    } else {
+        sound.classList.remove('loading');
+        sound.querySelector('label').classList.remove('invisible');
+        sound.querySelector('img').classList.remove('invisible');
     }
 }
 
-document.querySelectorAll('audio').forEach((audio) => {
-    if (audio.readyState > 3) {
-        audioHandler(audio);
-    } else {
-        audio.addEventListener('canplaythrough', () => {
-            audioHandler(audio);
-        });
+document.querySelectorAll('.sound').forEach((sound) => {
+    sound.onclick = async (e) => {
+        const audioEl = sound.querySelector('audio');
+        if (audioEl.readyState > 3) {
+            await play(audioEl);
+        } else {
+            audioEl.addEventListener('canplaythrough', async () => {
+                toggleLoading(sound, false);
+                await play(audioEl);
+            }, { once: true });
+            toggleLoading(sound, true);
+            audioEl.load();
+        }
     }
 });
 
