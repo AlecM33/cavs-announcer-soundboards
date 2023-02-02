@@ -1,21 +1,29 @@
-document.querySelectorAll('audio').forEach((audio) => {
-    audio.addEventListener('canplaythrough', () => {
-        audio.closest('div').classList.remove('loading');
-        audio.closest('div').querySelector('label').classList.remove('invisible');
-        audio.closest('div').querySelector('img').classList.remove('invisible');
-        audio.closest('.sound').classList.add('active-sound');
-        audio.closest('.sound').onclick = async (e) => {
-            document.querySelectorAll('.sound').forEach((sound) => {
-                sound.querySelector('audio').pause();
-                sound.querySelector('audio').currentTime = 0;
-            })
-            try {
-                await e.currentTarget.querySelector('audio').play();
-            } catch (e) {
-                console.error(e);
-            }
+const audioHandler = (audio) => {
+    audio.closest('div').classList.remove('loading');
+    audio.closest('div').querySelector('label').classList.remove('invisible');
+    audio.closest('div').querySelector('img').classList.remove('invisible');
+    audio.closest('.sound').classList.add('active-sound');
+    audio.closest('.sound').onclick = async (e) => {
+        document.querySelectorAll('.sound').forEach((sound) => {
+            sound.querySelector('audio').pause();
+            sound.querySelector('audio').currentTime = 0;
+        })
+        try {
+            await e.currentTarget.querySelector('audio').play();
+        } catch (e) {
+            console.error(e);
         }
-    });
+    }
+}
+
+document.querySelectorAll('audio').forEach((audio) => {
+    if (audio.readyState > 3) {
+        audioHandler(audio);
+    } else {
+        audio.addEventListener('canplaythrough', () => {
+            audioHandler(audio);
+        });
+    }
 });
 
 document.getElementById('back').onclick = () => {
