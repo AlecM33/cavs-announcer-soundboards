@@ -119,7 +119,7 @@ label {
 }
 
 .loading::after {
-    content: 'loading...';
+    content: '...';
     visibility: visible;
     position: absolute;
     font-size: 20px;
