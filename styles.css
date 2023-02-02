@@ -52,6 +52,7 @@ h1 {
     text-shadow: 0 3px 4px rgb(0 0 0 / 55%);
     font-style: italic;
     font-weight: 500;
+    filter: brightness(1.2);
 }
 
 label {
@@ -144,7 +145,7 @@ label {
 
 #header img {
     width: 100px;
-    filter: drop-shadow(0 3px 4px rgb(0 0 0 / 55%));
+    filter: drop-shadow(0 3px 4px rgb(0 0 0 / 55%)) brightness(1.2);
 }
 
 .sound img {
