@@ -17,9 +17,9 @@
     width: 100%;
 }
 
-body, html {
-    height: 100%;
-    overflow-y: auto;
+html {
+    background-color: rgba(114,37,61,1);
+    overflow: auto;
 }
 
 body {
@@ -216,8 +216,8 @@ a {
     }
 
     .announcer-option {
-        width: 180px;
-        height: 190px;
+        width: 175px;
+        height: 150px;
         padding: 10px;
     }
 
