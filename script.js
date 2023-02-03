@@ -16,6 +16,28 @@ const play = async (audioEl) => {
     await audioEl.play();
 }
 
+const listeners = {
+    'canplaythrough': async (e) => {
+        toggleLoading(e.currentTarget, false);
+        await play(e.currentTarget.querySelector('audio'));
+    },
+    'loadstart': (e) => {
+        toggleLoading(e.currentTarget, true);
+    },
+    'progress': (e) => {
+        toggleLoading(e.currentTarget, true);
+    },
+    'stalled': (e) => {
+        toggleLoading(e.currentTarget, false);
+    },
+    'suspend': (e) => {
+        toggleLoading(e.currentTarget, false);
+    },
+    'abort': (e) => {
+        toggleLoading(e.currentTarget, false);
+    }
+}
+
 const toggleLoading = (sound, isLoading) => {
     if (isLoading) {
         sound.querySelector('label').classList.add('invisible');
@@ -31,32 +53,36 @@ const toggleLoading = (sound, isLoading) => {
 document.querySelectorAll('.sound').forEach((sound) => {
     sound.onclick = async (e) => {
         const audioEl = sound.querySelector('audio');
-        if (audioEl.readyState > 3) {
+        if (audioEl.readyState >= 3) {
             await play(audioEl);
-        } else {
-            audioEl.addEventListener('canplaythrough', async () => {
-                toggleLoading(sound, false);
-                await play(audioEl);
-            }, { once: true });
-            audioEl.onloadstart = (e) => {
-                toggleLoading(sound, true);
-            }
-            audioEl.onprogress = (ee) => {
-                toggleLoading(sound, true);
-            };
-            audioEl.onstalled = (ee) => {
-                toggleLoading(sound, false);
-            };
-            audioEl.onsuspend = (ee) => {
-                toggleLoading(sound, false);
-            };
-            audioEl.onabort = (ee) => {
-                toggleLoading(sound, false);
-            };
+        } else if (audioEl.readyState === 0) {
             audioEl.load();
         }
     }
 });
+
+document.querySelectorAll('audio').forEach((audioEl) => {
+    let sound = audioEl.closest('.sound');
+    audioEl.addEventListener('canplaythrough', async () => {
+        toggleLoading(sound, false);
+        await play(audioEl);
+    }, { once: true });
+    audioEl.onloadstart = (e) => {
+        toggleLoading(sound, true);
+    }
+    audioEl.onprogress = (ee) => {
+        toggleLoading(sound, true);
+    };
+    audioEl.onstalled = (ee) => {
+        toggleLoading(sound, false);
+    };
+    audioEl.onsuspend = (ee) => {
+        toggleLoading(sound, false);
+    };
+    audioEl.onabort = (ee) => {
+        toggleLoading(sound, false);
+    };
+})
 
 document.getElementById('back').onclick = () => {
     document.querySelectorAll('.sound-list').forEach((soundList) => {
