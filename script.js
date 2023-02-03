@@ -16,28 +16,6 @@ const play = async (audioEl) => {
     await audioEl.play();
 }
 
-const listeners = {
-    'canplaythrough': async (e) => {
-        toggleLoading(e.currentTarget, false);
-        await play(e.currentTarget.querySelector('audio'));
-    },
-    'loadstart': (e) => {
-        toggleLoading(e.currentTarget, true);
-    },
-    'progress': (e) => {
-        toggleLoading(e.currentTarget, true);
-    },
-    'stalled': (e) => {
-        toggleLoading(e.currentTarget, false);
-    },
-    'suspend': (e) => {
-        toggleLoading(e.currentTarget, false);
-    },
-    'abort': (e) => {
-        toggleLoading(e.currentTarget, false);
-    }
-}
-
 const toggleLoading = (sound, isLoading) => {
     if (isLoading) {
         sound.querySelector('label').classList.add('invisible');
