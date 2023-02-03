@@ -7,10 +7,10 @@
     display: flex;
     flex-wrap: wrap;
     align-items: center;
-    justify-content: center;
+    justify-content: space-evenly;
     width: 95%;
-    max-width: 81em;
-    margin: 30px auto 0 auto;
+    max-width: 60em;
+    margin: 30px auto 15px auto;
 }
 
 #sounds {
@@ -40,6 +40,7 @@ button {
     width: 9em;
     border-radius: 5px;
     padding: 15px;
+    color: black;
     font-size: 25px;
     box-shadow:  0 3px 6px rgb(0 0 0 / 40%);
     justify-content: center;
@@ -215,8 +216,8 @@ a {
     }
 
     .announcer-option {
-        width: 150px;
-        height: 160px;
+        width: 180px;
+        height: 190px;
         padding: 10px;
     }
 
