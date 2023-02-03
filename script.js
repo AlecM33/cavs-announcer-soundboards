@@ -1,7 +1,10 @@
 const pauseAllOtherSounds = () => {
     document.querySelectorAll('.sound').forEach((sound) => {
         const audioEl = sound.querySelector('audio');
-        if (audioEl.currentTime > 0 && !audioEl.paused && !audioEl.ended && audioEl.readyState > audioEl.HAVE_CURRENT_DATA) {
+        if (audioEl.currentTime > 0
+            && !audioEl.paused && !audioEl.ended
+            && audioEl.readyState > audioEl.HAVE_CURRENT_DATA
+        ) {
             audioEl.pause();
             audioEl.currentTime = 0;
         }
@@ -35,7 +38,21 @@ document.querySelectorAll('.sound').forEach((sound) => {
                 toggleLoading(sound, false);
                 await play(audioEl);
             }, { once: true });
-            toggleLoading(sound, true);
+            audioEl.onloadstart = (e) => {
+                toggleLoading(sound, true);
+            }
+            audioEl.onprogress = (ee) => {
+                toggleLoading(sound, true);
+            };
+            audioEl.onstalled = (ee) => {
+                toggleLoading(sound, false);
+            };
+            audioEl.onsuspend = (ee) => {
+                toggleLoading(sound, false);
+            };
+            audioEl.onabort = (ee) => {
+                toggleLoading(sound, false);
+            };
             audioEl.load();
         }
     }
