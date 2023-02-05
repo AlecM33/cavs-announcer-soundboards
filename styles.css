@@ -31,11 +31,11 @@ body {
     margin: 0;
     align-items: center;
     background: rgb(77,26,41);
-    background: linear-gradient(180deg, rgba(77,26,41,1) 0%, rgba(114,37,61,1) 50%, rgba(114,37,61,1) 100%);
+    background: linear-gradient(180deg, rgba(77,26,41,1) 0%, rgba(114,37,61,1) 400px, rgba(114,37,61,1) 800px);
 }
 
 button {
-    background-color: #b4975a;
+    background-color: #d8b56c;
     border: none;
     width: 9em;
     border-radius: 5px;
@@ -48,7 +48,7 @@ button {
 }
 
 h1 {
-    color: #B4975A;
+    color: #d8b56c;
     font-size: 50px;
     text-shadow: 0 3px 4px rgb(0 0 0 / 55%);
     font-style: italic;
@@ -67,7 +67,7 @@ label {
     margin: 5px;
     background-color: #5e1f32;
     box-shadow: 0 3px 6px rgb(0 0 0 / 40%);
-    border: 2px solid #b4975a;
+    border: 2px solid #d8b56c;
     user-select: none;
     -ms-user-select: none;
     display: flex;
@@ -147,7 +147,7 @@ label {
 
 #header img {
     width: 100px;
-    filter: drop-shadow(0 3px 4px rgb(0 0 0 / 55%)) brightness(1.2);
+    filter: drop-shadow(0 3px 4px rgb(0 0 0 / 55%));
 }
 
 #header a img {
@@ -182,7 +182,7 @@ a {
     background-color: #5e1f32;
     padding: 10px;
     border-radius: 5px;
-    border: 3px solid #b4975a;
+    border: 3px solid #d8b56c;
     box-shadow: 0 3px 6px rgb(0 0 0 / 40%);
     margin: 10px;
     user-select: none;
