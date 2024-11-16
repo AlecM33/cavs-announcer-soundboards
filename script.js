@@ -48,16 +48,16 @@ document.querySelectorAll('audio').forEach((audioEl) => {
     audioEl.onloadstart = (e) => {
         toggleLoading(sound, true);
     }
-    audioEl.onprogress = (ee) => {
+    audioEl.onprogress = (e) => {
         toggleLoading(sound, true);
     };
-    audioEl.onstalled = (ee) => {
+    audioEl.onstalled = (e) => {
         toggleLoading(sound, false);
     };
-    audioEl.onsuspend = (ee) => {
+    audioEl.onsuspend = (e) => {
         toggleLoading(sound, false);
     };
-    audioEl.onabort = (ee) => {
+    audioEl.onabort = (e) => {
         toggleLoading(sound, false);
     };
 })
