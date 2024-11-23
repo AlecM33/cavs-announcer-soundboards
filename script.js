@@ -1,19 +1,18 @@
-const pauseAllOtherSounds = () => {
+const pauseAllSounds = () => {
     document.querySelectorAll('.sound').forEach((sound) => {
         const audioEl = sound.querySelector('audio');
-        if (audioEl.currentTime > 0
-            && !audioEl.paused && !audioEl.ended
-            && audioEl.readyState > audioEl.HAVE_CURRENT_DATA
-        ) {
-            audioEl.pause();
-            audioEl.currentTime = 0;
-        }
+        audioEl.pause();
+        audioEl.currentTime = 0;
     })
 }
 
 const play = async (audioEl) => {
-    pauseAllOtherSounds();
-    await audioEl.play();
+    pauseAllSounds();
+    audioEl.play().catch((e) => {
+        if (e.name === "AbortError") {
+            console.log("Canceled playback due to selection of another sound.", e);
+        }
+    });
 }
 
 const toggleLoading = (sound, isLoading) => {
@@ -30,21 +29,14 @@ const toggleLoading = (sound, isLoading) => {
 
 document.querySelectorAll('.sound').forEach((sound) => {
     sound.onclick = async (e) => {
+        toggleLoading(sound, true);
         const audioEl = sound.querySelector('audio');
-        if (audioEl.readyState >= 3) {
-            await play(audioEl);
-        } else if (audioEl.readyState === 0) {
-            audioEl.load();
-        }
+        await play(audioEl);
     }
 });
 
 document.querySelectorAll('audio').forEach((audioEl) => {
     let sound = audioEl.closest('.sound');
-    audioEl.addEventListener('canplaythrough', async () => {
-        toggleLoading(sound, false);
-        await play(audioEl);
-    }, { once: true });
     audioEl.onloadstart = (e) => {
         toggleLoading(sound, true);
     }
@@ -58,6 +50,9 @@ document.querySelectorAll('audio').forEach((audioEl) => {
         toggleLoading(sound, false);
     };
     audioEl.onabort = (e) => {
+        toggleLoading(sound, false);
+    };
+    audioEl.onplaying = (e) => {
         toggleLoading(sound, false);
     };
 })
